@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>廢話大師</title>
+    <style>
+        /* CSS: 負責網頁長相 */
+        body {
+            background-color: #f4f4f9;
+            font-family: '微軟正黑體', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 讓內容垂直置中 */
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        #quote-display {
+            font-size: 20px;
+            color: #555;
+            min-height: 80px; /* 預留高度，避免文字換行時卡片一直跳動 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            font-weight: bold;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-3px); /* 滑鼠移上去稍微浮起來 */
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        button:active {
+            transform: scale(0.95); /* 按下去縮小一點點，增加手感 */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>✨ 廢話大師指引 ✨</h1>
+        
+        <div id="quote-display">
+            點擊按鈕，獲取今日的人生體悟...
+        </div>
+
+        <button id="generate-btn">大師請開示</button>
+    </div>
+
+    <script>
+        // JS: 負責邏輯與互動
+        
+        // 1. 準備廢話資料庫 (這就是 Array 陣列)
+        const phrases = [
+            "聽君一席話，如聽一席話。",
+            "每呼吸 60 秒，就有一分鐘過去。",
+            "要解決這個問題，首先我們必須解決這個問題。",
+            "你今天不想跑，所以沒跑，這就是沒跑的原因。",
+            "上次看到這麼精彩的發言，還是在上次。",
+            "據統計，未婚生子的人數中，女性佔了絕大多數。",
+            "誰能想到，這名兇手在殺人之前，竟然是活著的。",
+            "當你覺得自己又醜又窮的時候，別絕望，至少你的判斷是對的。",
+            "這個東西有點鹹，大概是因為加了鹽。",
+            "只要你每天省下一杯奶茶錢，十天後你就能買十杯奶茶。",
+            "如果你的錢包是空的，那就代表你沒錢。",
+            "雖然你沒有錢，但是你還有我們這些也沒有錢的朋友啊！"
+        ];
+
+        // 2. 抓取 HTML 元素
+        const display = document.getElementById('quote-display');
+        const btn = document.getElementById('generate-btn');
+
+        // 3. 定義產生廢話的動作
+        function generateBullshit() {
+            // Math.random() 會產生 0 到 1 之間的小數
+            // 乘上陣列長度 (phrases.length) 再無條件捨去 (Math.floor)，就能得到隨機索引
+            const randomIndex = Math.floor(Math.random() * phrases.length);
+            
+            // 把選到的廢話塞進顯示區
+            display.innerText = phrases[randomIndex];
+            
+            // (加碼效果) 每次點擊都換個顏色
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            display.style.color = randomColor;
+        }
+
+        // 4. 綁定按鈕事件：當 'click' 發生時，執行 generateBullshit
+        btn.addEventListener('click', generateBullshit);
+
+    </script>
+</body>
+</html>
