@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🤣 隨機搞笑故事機</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            background-color: #fce4ec; /* 柔和的粉紅背景 */
+            color: #880e4f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fffafa;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            max-width: 800px;
+            width: 100%;
+            border: 2px dashed #f06292; /* 趣味虛線邊框 */
+        }
+        h1 {
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px #f48fb1;
+        }
+        .input-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #f8bbd0;
+            border-radius: 15px;
+            background-color: #ffebee;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #c2185b;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #f48fb1;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background-color: #ec407a; /* 亮粉紅色按鈕 */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+        button:hover {
+            background-color: #d81b60;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #story-output {
+            margin-top: 40px;
+            padding: 35px;
+            border: 4px dotted #f48fb1; /* 點狀邊框 */
+            border-radius: 15px;
+            background-color: #fffde7; /* 淺黃色背景，與粉色形成對比 */
+            font-size: 1.3em;
+            line-height: 1.8;
+            min-height: 150px;
+            text-align: justify;
+        }
+        .highlight {
+            color: #d32f2f; /* 醒目紅色 */
+            font-weight: bold;
+            text-decoration: underline; /* 增加下劃線讓詞語更突出 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🤣 隨機搞笑故事機：創造你的無限荒謬傳說！</h1>
+    <p>請盡情輸入任何稀奇古怪的詞語！每次點擊按鈕，都會有全新的搞笑故事等待你！</p>
+    
+    <div class="input-form">
+        <div class="input-group">
+            <label for="noun1">名詞 (人/物/生物)：</label>
+            <input type="text" id="noun1" placeholder="例如：一隻會說話的烤麵包機">
+        </div>
+        <div class="input-group">
+            <label for="verb1">動詞 (古怪的動作)：</label>
+            <input type="text" id="verb1" placeholder="例如：在水溝裡跳森巴">
+        </div>
+        <div class="input-group">
+            <label for="adverb1">副詞 (詭異的方式)：</label>
+            <input type="text" id="adverb1" placeholder="例如：像瘋子一樣">
+        </div>
+        <div class="input-group">
+            <label for="adjective1">形容詞 (荒謬的描述)：</label>
+            <input type="text" id="adjective1" placeholder="例如：長滿鳳梨的">
+        </div>
+        <div class="input-group">
+            <label for="noun2">名詞 (奇怪地點/物品)：</label>
+            <input type="text" id="noun2" placeholder="例如：外婆的衣櫃深處">
+        </div>
+        <div class="input-group">
+            <label for="adjective2">形容詞 (奇葩的情緒/狀態)：</label>
+            <input type="text" id="adjective2" placeholder="例如：被香蕉皮絆倒的">
+        </div>
+        <div class="input-group">
+            <label for="noun3">名詞 (抽象概念/奇怪的東西)：</label>
+            <input type="text" id="noun3" placeholder="例如：宇宙級的毛線球">
+        </div>
+        <div class="input-group">
+            <label for="verb2">動詞 (無厘頭的行為)：</label>
+            <input type="text" id="verb2" placeholder="例如：把月亮當溜溜球玩">
+        </div>
+    </div>
+    
+    <button onclick="generateStory()">生成我的荒謬故事！</button>
+    
+    <div id="story-output">
+        <p>你的荒謬故事將會在這裡誕生！快輸入詞彙，點擊按鈕吧！</p>
+    </div>
+</div>
+
+<script>
+    // 隨機選擇陣列中的一個元素
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateStory() {
+        // 1. 獲取使用者輸入的詞彙 (以及更搞笑的預設值)
+        const inputs = {
+            noun1: document.getElementById('noun1').value || '一隻會說話的烤麵包機',
+            verb1: document.getElementById('verb1').value || '在水溝裡跳森巴',
+            adverb1: document.getElementById('adverb1').value || '像瘋子一樣',
+            adjective1: document.getElementById('adjective1').value || '長滿鳳梨的',
+            noun2: document.getElementById('noun2').value || '外婆的衣櫃深處',
+            adjective2: document.getElementById('adjective2').value || '被香蕉皮絆倒的',
+            noun3: document.getElementById('noun3').value || '宇宙級的毛線球',
+            verb2: document.getElementById('verb2').value || '把月亮當溜溜球玩'
+        };
+
+        // 2. 更多更搞笑的故事模板的陣列 (使用 $詞性$ 作為佔位符)
+        const storyTemplates = [
+            `在一個<span class="highlight">$adjective1$</span>的早晨，
+             <span class="highlight">$noun1$</span>突然<span class="highlight">$adverb1$</span>地
+             開始<span class="highlight">$verb1$</span>。牠的目標是找到傳說中藏在
+             <span class="highlight">$noun2$</span>的<span class="highlight">$noun3$</span>。
+             最終，牠以一種<span class="highlight">$adjective2$</span>的姿態，成功地完成了任務！`,
+            
+            `想像一下，如果有一天，你的<span class="highlight">$noun1$</span>
+             <span class="highlight">$adverb1$</span>地對你說：「我們必須立刻去
+             <span class="highlight">$noun2$</span>，因為那裡有
+             <span class="highlight">$adjective1$</span>的<span class="highlight">$noun3$</span>等著我們去
+             <span class="highlight">$verb2$</span>！」你會不會感到很<span class="highlight">$adjective2$</span>？`,
+            
+            `一位<span class="highlight">$adjective2$</span>的探險家，帶著他的
+             <span class="highlight">$adjective1$</span>的<span class="highlight">$noun1$</span>，
+             <span class="highlight">$adverb1$</span>地<span class="highlight">$verb1$</span>進入了
+             <span class="highlight">$noun2$</span>。據說那裡住著一位能把
+             <span class="highlight">$noun3$</span>變成泡泡的巫師。他們此行的目的，就是為了親眼見證巫師
+             <span class="highlight">$verb2$</span>的奇蹟。`,
+
+            `昨晚，我夢見了<span class="highlight">$noun1$</span>在
+             <span class="highlight">$noun2$</span>，
+             <span class="highlight">$adverb1$</span>地<span class="highlight">$verb1$</span>。
+             牠手上拿著一個<span class="highlight">$adjective1$</span>的<span class="highlight">$noun3$</span>，
+             看起來非常<span class="highlight">$adjective2$</span>。醒來後，我發現我的牙刷竟然在
+             <span class="highlight">$verb2$</span>！這簡直太離譜了！`,
+
+            `在一個不為人知的平行宇宙，每個<span class="highlight">$noun1$</span>都會
+             <span class="highlight">$adverb1$</span>地<span class="highlight">$verb1$</span>。
+             他們的生活充滿了<span class="highlight">$adjective1$</span>的挑戰，尤其是當他們必須在
+             <span class="highlight">$noun2$</span>面對一場關於
+             <span class="highlight">$noun3$</span>的辯論時。但只要能<span class="highlight">$verb2$</span>成功，
+             他們就會感到無比<span class="highlight">$adjective2$</span>。`
+        ];
+
+        // 3. 隨機選擇一個故事模板
+        let selectedTemplate = getRandomElement(storyTemplates);
+
+        // 4. 替換佔位符
+        for (const key in inputs) {
+            const placeholder = new RegExp(`\\$${key}\\$`, 'g');
+            selectedTemplate = selectedTemplate.replace(placeholder, inputs[key]);
+        }
+
+        // 5. 輸出故事
+        document.getElementById('story-output').innerHTML = selectedTemplate;
+    }
+
+    // 頁面加載時先生成一次故事 (用預設值)
+    window.onload = generateStory;
+</script>
+
+</body>
+</html>
