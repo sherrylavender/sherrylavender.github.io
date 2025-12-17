@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 互動式填詞故事機 (隨機版)</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #2e7d32;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .input-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #c8e6c9;
+            border-radius: 10px;
+            background-color: #f1f8e9;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #388e3c;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #a5d6a7;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #388e3c;
+        }
+        #story-output {
+            margin-top: 40px;
+            padding: 30px;
+            border: 3px dashed #81c784;
+            border-radius: 10px;
+            background-color: #f7fff7;
+            font-size: 1.2em;
+            line-height: 1.8;
+            min-height: 100px;
+        }
+        .highlight {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📚 互動式填詞故事機：創造你的瘋狂故事 (隨機版)</h1>
+    <p>請在下方輸入框中填入任何你喜歡的詞語。注意：這次每次點擊會生成不同的故事結構！</p>
+    
+    <div class="input-form">
+        <div class="input-group">
+            <label for="noun1">名詞 (人/物)：</label>
+            <input type="text" id="noun1" placeholder="例如：超級英雄">
+        </div>
+        <div class="input-group">
+            <label for="verb1">動詞 (進行式)：</label>
+            <input type="text" id="verb1" placeholder="例如：跳躍著">
+        </div>
+        <div class="input-group">
+            <label for="adverb1">副詞 (如何做)：</label>
+            <input type="text" id="adverb1" placeholder="例如：笨拙地">
+        </div>
+        <div class="input-group">
+            <label for="adjective1">形容詞 (描述)：</label>
+            <input type="text" id="adjective1" placeholder="例如：閃亮的">
+        </div>
+        <div class="input-group">
+            <label for="noun2">名詞 (地點)：</label>
+            <input type="text" id="noun2" placeholder="例如：微波爐裡">
+        </div>
+        <div class="input-group">
+            <label for="adjective2">形容詞 (情緒)：</label>
+            <input type="text" id="adjective2" placeholder="例如：生氣的">
+        </div>
+    </div>
+    
+    <button onclick="generateStory()">生成我的故事</button>
+    
+    <div id="story-output">
+        <p>故事將會在這裡顯示。輸入詞彙後點擊上方的按鈕吧！</p>
+    </div>
+</div>
+
+<script>
+    // 隨機選擇陣列中的一個元素
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateStory() {
+        // 1. 獲取使用者輸入的詞彙 (以及預設值)
+        const inputs = {
+            noun1: document.getElementById('noun1').value || '一隻貓咪',
+            verb1: document.getElementById('verb1').value || '飛奔著',
+            adverb1: document.getElementById('adverb1').value || '偷偷地',
+            adjective1: document.getElementById('adjective1').value || '粉紅色的',
+            noun2: document.getElementById('noun2').value || '月球背面',
+            adjective2: document.getElementById('adjective2').value || '快樂的'
+        };
+
+        // 2. 多個故事模板的陣列 (使用 $詞性$ 作為佔位符)
+        const storyTemplates = [
+            `今天早上，一個<span class="highlight">$adjective1$</span>的<span class="highlight">$noun1$</span>，
+             決定開始一場驚心動魄的冒險。牠<span class="highlight">$adverb1$</span>從
+             <span class="highlight">$noun2$</span>出發，<span class="highlight">$verb1$</span>穿過整個城市。
+             雖然旅程非常<span class="highlight">$adjective2$</span>，但牠最終抵達了終點。`,
+            
+            `深夜，在<span class="highlight">$noun2$</span>，<span class="highlight">$adjective1$</span>的
+             <span class="highlight">$noun1$</span>突然<span class="highlight">$verb1$</span>大叫。
+             牠<span class="highlight">$adverb1$</span>地尋找著失蹤的鑰匙，因為這關係到牠
+             <span class="highlight">$adjective2$</span>的未來。最終，牠在一個角落找到了鑰匙，
+             這真是一場<span class="highlight">$adjective2$</span>的驚魂記！`,
+            
+            `我們遇見了一位<span class="highlight">$adjective2$</span>的旅行者，他帶著
+             <span class="highlight">$adjective1$</span>的<span class="highlight">$noun1$</span>，
+             聲稱自己剛從<span class="highlight">$noun2$</span>回來。他說他在那裡學會了
+             如何<span class="highlight">$adverb1$</span>地<span class="highlight">$verb1$</span>，
+             這對當地人來說簡直是聞所未聞的奇事！`
+        ];
+
+        // 3. 隨機選擇一個故事模板
+        let selectedTemplate = getRandomElement(storyTemplates);
+
+        // 4. 替換佔位符
+        // 遍歷 inputs 物件，將模板中的 $詞性$ 替換為使用者輸入的詞彙
+        for (const key in inputs) {
+            const placeholder = new RegExp(`\\$${key}\\$`, 'g');
+            selectedTemplate = selectedTemplate.replace(placeholder, inputs[key]);
+        }
+
+        // 5. 輸出故事
+        document.getElementById('story-output').innerHTML = selectedTemplate;
+    }
+
+    // 頁面加載時先生成一次故事，以免初始空白，但用預設值
+    window.onload = generateStory;
+</script>
+
+</body>
+</html>
