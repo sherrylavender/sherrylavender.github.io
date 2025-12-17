@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💡 廢話產生器</title>
+    <title>🤣 絕對好笑的廢話產生器</title>
     <style>
         body {
             font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
@@ -13,58 +13,62 @@
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #ffe0b2; /* 暖色背景 */
+            color: #4e342e;
         }
         .container {
-            background-color: #fff;
+            background-color: #fff8e1; /* 淺黃色容器 */
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             max-width: 600px;
             width: 90%;
             text-align: center;
+            border: 3px dashed #ff9800; /* 趣味邊框 */
         }
         h1 {
-            color: #2c3e50;
+            color: #d84315;
             margin-bottom: 20px;
+            text-shadow: 2px 2px #ffcc80;
         }
         button {
-            background-color: #3498db;
+            background-color: #ff5722; /* 橘紅色按鈕 */
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 18px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
             margin-bottom: 30px;
         }
         button:hover {
-            background-color: #2980b9;
+            background-color: #e64a19;
         }
         button:active {
-            transform: scale(0.98);
+            transform: scale(0.95);
         }
         #output {
-            background-color: #ecf0f1;
-            padding: 20px;
-            border-radius: 8px;
-            min-height: 100px;
-            text-align: left;
-            font-size: 1.2em;
-            line-height: 1.6;
-            border: 1px solid #bdc3c7;
+            background-color: #fffde7;
+            padding: 25px;
+            border-radius: 10px;
+            min-height: 120px;
+            text-align: center;
+            font-size: 1.5em;
+            line-height: 1.5;
+            border: 2px solid #ff9800;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>💡 廢話產生器</h1>
-    <p>點擊按鈕，獲得一句充滿深度但沒有實質內容的「廢話」！</p>
+    <h1>🤣 絕對好笑的廢話產生器</h1>
+    <p>準備好了嗎？點擊按鈕，解鎖宇宙級的無厘頭金句！</p>
     
-    <button onclick="generateNonsense()">一鍵生成廢話</button>
+    <button onclick="generateNonsense()">發射荒謬火箭</button>
     
     <div id="output">
         點擊上方按鈕開始生成...
@@ -72,12 +76,12 @@
 </div>
 
 <script>
-    // 廢話的核心材料：隨機詞彙和句型
-    const subject = ['我們', '這個計畫', '未來的趨勢', '整個生態系', '數據分析結果', '跨部門溝通', '高層的指導方針'];
-    const verb = ['必須要', '應當', '需要', '正在', '不斷地', '試圖去', '準備好'];
-    const adjective = ['深度優化', '全面啟動', '系統性整合', '結構化調整', '有效連結', '重新定義', '創新迭代'];
-    const object = ['核心價值', '用戶體驗', '潛在風險', '戰略佈局', '資源配置', '市場痛點', '產業升級'];
-    const ending = ['的目標', '的過程', '的願景', '的環節', '的契機', '的閉環', '的動能'];
+    // 好笑版詞彙：
+    const subject = ['隔壁的貓咪', '昨天的晚餐', '外星人的WiFi', '我那雙褪色的襪子', '被遺忘的螺絲起子', '三年前的許願池', '你阿嬤的編織教學'];
+    const verb = ['堅持要', '應該馬上', '試圖用鼻子', '正在努力地', '總是偷偷地', '決定無限期', '不斷嘗試'];
+    const adjective = ['高維度展開', '量子糾纏式', '非線性彈跳', '哲學性思考', '毫無意義的', '超現實主義的', '靈魂出竅般地'];
+    const object = ['香蕉皮戰術', '平底鍋理論', '隱藏的冷凍餃子', '宇宙級的尷尬', '青春期的小秘密', '被鎖住的櫃子', '某種神秘的儀式感'];
+    const ending = ['的必要性', '的最終結果', '的偉大航道', '的邏輯推演', '的復興計畫', '的唯一解方', '的華麗謝幕'];
     
     // 隨機選擇陣列中的一個元素
     function getRandomElement(arr) {
@@ -92,14 +96,14 @@
         const p4 = getRandomElement(object);
         const p5 = getRandomElement(ending);
         
-        // 組合句子，例如：我們 必須要 深度優化 核心價值 的目標。
+        // 組合句子
         const nonsenseSentence = `${p1} ${p2} ${p3} ${p4} ${p5}。`;
         
         // 顯示在網頁上
         document.getElementById('output').innerText = nonsenseSentence;
     }
 
-    // 頁面加載時先生成一句，避免初始空白
+    // 頁面加載時先生成一句
     window.onload = generateNonsense;
 </script>
 
