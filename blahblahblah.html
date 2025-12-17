@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💡 廢話產生器</title>
+    <style>
+        body {
+            font-family: 'Arial', 'Microsoft JhengHei', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-bottom: 30px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #output {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 100px;
+            text-align: left;
+            font-size: 1.2em;
+            line-height: 1.6;
+            border: 1px solid #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💡 廢話產生器</h1>
+    <p>點擊按鈕，獲得一句充滿深度但沒有實質內容的「廢話」！</p>
+    
+    <button onclick="generateNonsense()">一鍵生成廢話</button>
+    
+    <div id="output">
+        點擊上方按鈕開始生成...
+    </div>
+</div>
+
+<script>
+    // 廢話的核心材料：隨機詞彙和句型
+    const subject = ['我們', '這個計畫', '未來的趨勢', '整個生態系', '數據分析結果', '跨部門溝通', '高層的指導方針'];
+    const verb = ['必須要', '應當', '需要', '正在', '不斷地', '試圖去', '準備好'];
+    const adjective = ['深度優化', '全面啟動', '系統性整合', '結構化調整', '有效連結', '重新定義', '創新迭代'];
+    const object = ['核心價值', '用戶體驗', '潛在風險', '戰略佈局', '資源配置', '市場痛點', '產業升級'];
+    const ending = ['的目標', '的過程', '的願景', '的環節', '的契機', '的閉環', '的動能'];
+    
+    // 隨機選擇陣列中的一個元素
+    function getRandomElement(arr) {
+        return arr[Math.floor(Math.random() * arr.length)];
+    }
+    
+    // 生成一句廢話
+    function generateNonsense() {
+        const p1 = getRandomElement(subject);
+        const p2 = getRandomElement(verb);
+        const p3 = getRandomElement(adjective);
+        const p4 = getRandomElement(object);
+        const p5 = getRandomElement(ending);
+        
+        // 組合句子，例如：我們 必須要 深度優化 核心價值 的目標。
+        const nonsenseSentence = `${p1} ${p2} ${p3} ${p4} ${p5}。`;
+        
+        // 顯示在網頁上
+        document.getElementById('output').innerText = nonsenseSentence;
+    }
+
+    // 頁面加載時先生成一句，避免初始空白
+    window.onload = generateNonsense;
+</script>
+
+</body>
+</html>
